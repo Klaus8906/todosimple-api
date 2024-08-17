@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
@@ -20,8 +21,8 @@ import jakarta.validation.constraints.Size;
 @Entity
 @Table(name = "user")
 public class User {
-    interface CreateUser {}
-    interface UpdateUser {}
+    public interface CreateUser {}
+    public interface UpdateUser {}
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -74,6 +75,7 @@ public class User {
         this.password = password;
     }
 
+    @JsonIgnore
     public List<Task> getTodos() {
         return this.todos;
     }
