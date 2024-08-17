@@ -1,6 +1,7 @@
 package com.klausteles.todosimple.services;
 
 import java.util.Optional;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -51,5 +52,12 @@ public class TaskService {
         Task task = findTaskById(id);
         this.taskRepository.delete(task);
 
+    }
+
+    @Transactional
+    public List<Task> findAllTasksPerUser(Long id) {
+
+        List<Task> tasks = this.taskRepository.findByUser_Id(id);
+        return tasks;
     }
 }

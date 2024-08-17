@@ -31,7 +31,7 @@ public class UserController {
     UserService userService;
 
     @GetMapping("/{id}")
-    public ResponseEntity<User> getUser(@PathVariable Long id) {
+    public ResponseEntity<User> get(@PathVariable Long id) {
 
         User user = this.userService.findUserById(id);
         return ResponseEntity.ok().body(user);
@@ -39,7 +39,7 @@ public class UserController {
 
     @PostMapping()
     @Validated(CreateUser.class)
-    public ResponseEntity<Void> createUser(@Valid @RequestBody User user) {
+    public ResponseEntity<Void> create(@Valid @RequestBody User user) {
 
         this.userService.createUser(user);
         URI uri = ServletUriComponentsBuilder
@@ -53,7 +53,7 @@ public class UserController {
 
     @PutMapping("/{id}")
     @Validated(UpdateUser.class)
-    public ResponseEntity<Void> updateUser(@Valid @RequestBody User user, @PathVariable Long id) {
+    public ResponseEntity<Void> update(@Valid @RequestBody User user, @PathVariable Long id) {
 
         user.setId(id);
         this.userService.updateUser(user);
@@ -62,7 +62,7 @@ public class UserController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
 
         this.userService.deleteUser(id);
         return ResponseEntity.noContent().build();

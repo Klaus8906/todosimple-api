@@ -14,13 +14,12 @@ import jakarta.persistence.ManyToOne;
 import java.util.Objects;
 
 @Entity
-@Table(name = "tarefas")
+@Table(name = "task")
 public class Task {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", unique = true)
-    @NotNull
     private Long id;
 
     @ManyToOne
