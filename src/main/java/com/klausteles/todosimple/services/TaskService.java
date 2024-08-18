@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.klausteles.todosimple.models.Task;
 import com.klausteles.todosimple.models.User;
 import com.klausteles.todosimple.repositories.TaskRepository;
+import com.klausteles.todosimple.services.exceptions.ObjectNotFoundException;
 
 @Service
 public class TaskService {
@@ -25,7 +26,7 @@ public class TaskService {
         
         Optional<Task> newTask = this.taskRepository.findById(id);
 
-        return newTask.orElseThrow(() -> new RuntimeException("A tarefa nao foi encontrada. ID: "+ id));
+        return newTask.orElseThrow(() -> new ObjectNotFoundException("A tarefa nao foi encontrada. ID: "+ id));
     }
 
     @Transactional
